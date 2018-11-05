@@ -1,0 +1,16 @@
+pip install numpy
+
+pip install pandas
+
+pip install matplotlib
+
+pip install nltk
+
+pip install sklearn
+
+pip install tashaphyne
+
+pip install itertools
+
+
+
