@@ -1,7 +1,7 @@
 # document-classification
 Repo for document classification
 ----------------------------------------------------------------------------
-Abstract
+
 Document classification is one of the important task in supervised machine learning (ML). To
 perform document classification automatically, documents need to be represented such that it
 is understandable to the machine learning classifier. We made 3 models of classifiers, the first
