@@ -14,4 +14,4 @@ used a dataset composed of 35,000 articles classified into 7 countries. Then we 
 extraction of features using " Count and TfIdf feature vectors ". For each feature vector
 representation, we trained the Naïve Bayes classifier and then tested the generated classifier
 on test documents. In our results, we found that Count vectorizer performed 2% better than
-TFIDF on a dataset of 10,000 samples, and 1% better than it on a dataset of 30,000 samples
+TFIDF on a dataset of over 10,000 samples, and 1% better than it on a dataset of over 30,000 samples
