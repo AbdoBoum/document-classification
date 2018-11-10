@@ -6,13 +6,13 @@ import matplotlib.pyplot as plt
 
 from nltk.stem.porter import * # to perform stemming use to remove verbs
 
-# to convert a collection of raw documents to a matrix of TF-IDF features.
+# to convert a collection of raw documents to a matrix of TF-IDF _features.
 from sklearn.feature_extraction.text import CountVectorizer
 
 # for feature selection
 from sklearn.metrics import confusion_matrix
 
-# implements what is called one-of-K or “one-hot” coding for categorical (aka nominal, discrete) features.
+# implements what is called one-of-K or “one-hot” coding for categorical (aka nominal, discrete) _features.
 from sklearn.preprocessing import LabelEncoder
 
 # splitting the data in test and train
@@ -69,19 +69,15 @@ xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size=0.2)
 # ------------------------------------------------naive bayes implementation ------------------------------------------------
 
 featurenames=' '.join(vector.get_feature_names())
-file = open("arabic_country_features.txt","w", encoding="utf8")
-file1 = open("english_country_features.txt","w", encoding="utf8")
+file = open("..\_features\_country_features.txt","w", encoding="utf8")
 file.write(featurenames)
-file1.write(featurenames)
-file1.close()
 file.close()
 # print(xtrain4)
 nb = MultinomialNB()
 nb.fit(xtrain, ytrain)	# fitting the text
 print("Normal implementation")
 print(nb.score(xtest, ytest))		# to calculate the score for the classification
-pickle.dump(nb, open("arabic_country_model.pickle.dat", "wb"))
-pickle.dump(nb, open("english_country_model.pickle.dat", "wb"))
+pickle.dump(nb, open("..\exported_models\_country_model.pickle.dat", "wb"))
 # ---------------------- Plotting ------------------------------------
 
 ypred = nb.predict(xtest)

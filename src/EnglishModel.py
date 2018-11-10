@@ -24,54 +24,12 @@ from sklearn.naive_bayes import MultinomialNB
 import pickle
 
 import matplotlib.pyplot as plt
-import itertools
-# these two arae for graphs
 
-from sklearn.externals import joblib
-# for saving model
+from src.Plot import plot_confusion_matrix
+
+from src.textCleaning import clean_text_en
 
 # ----------------------- Imported all the libraries ----------------------------------------------
-def is_number(s):
-    try:
-        int(s)
-        return True
-    except ValueError:
-        return False
-
-def plot_confusion_matrix(cm, classes,
-                          normalize=False,
-                          title='Confusion matrix',
-                          cmap=plt.cm.Blues):
-    """
-    This function prints and plots the confusion matrix.
-    Normalization can be applied by setting `normalize=True`.
-    """
-    plt.imshow(cm, interpolation='nearest', cmap=cmap)
-    plt.title(title)
-    plt.colorbar()
-    tick_marks = np.arange(len(classes))
-    plt.xticks(tick_marks, classes, rotation=45)
-    plt.yticks(tick_marks, classes)
-
-    if normalize:
-        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
-        print("Normalized confusion matrix")
-    else:
-        print('Confusion matrix, without normalization')
-
-    print(cm)
-
-    thresh = cm.max() / 2.
-    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-        plt.text(j, i, cm[i, j],
-                 horizontalalignment="center",
-                 color="white" if cm[i, j] > thresh else "black")
-
-    plt.tight_layout()
-    plt.ylabel('True label')
-    plt.xlabel('Predicted label')
-
-# -----------------------  function for plotting ----------------------------------------------------------
 
 # grabbing the data
 news = pd.read_csv('..\dataset\Englishdataset.csv')
@@ -81,9 +39,7 @@ news_list = [s.lower().translate(str.maketrans('','',string.punctuation)) for s 
 stop = set(stopwords.words('english'))
 filtered_words = []
 for sentence in news_list:
-	filtered_words.append(" ".join([word for word in sentence.split()
-                                    if ((word.lower() not in stop) and (len(word.lower())<15)
-                                     and not (is_number(word.lower()))) ])) #need to check which words are removed
+	filtered_words.append(clean_text_en(sentence))
 
 stemmer = PorterStemmer()
 stemmed=[]
@@ -139,7 +95,7 @@ xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size=0.2)
 
 
 featurenames=' '.join(vector.get_feature_names())
-file = open("enfeatures.txt","w", encoding="utf8")
+file = open("..\_features\_english_category_features.txt","w", encoding="utf8")
 file.write(featurenames)
 file.close()
 # print(xtrain4)
@@ -147,9 +103,7 @@ nb = MultinomialNB()
 nb.fit(xtrain, ytrain)	# fitting the text
 print("Normal implementation")
 print(nb.score(xtest, ytest))# to calculate the score for the classification
-pickle.dump(nb, open("enModel.pickle.dat", "wb"))
-#joblib.dump(nb, 'enModel.pkl')
-
+pickle.dump(nb, open("..\exported_models\_english_category_model.pickle.dat", "wb"))
 
 # ---------------------- Plotting ------------------------------------
 

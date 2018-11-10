@@ -4,7 +4,7 @@ from nltk.stem.isri import ISRIStemmer
 from nltk.stem.porter import *
 
 stop = set(stopwords.words('french'))
-stop1 = open("C:/Users/Dell/PycharmProjects/txt_classification_ar/dataset/stop-words/list.txt", encoding="utf8").read().splitlines()
+stop1 = open("../dataset/stop-words/list.txt", encoding="utf8").read().splitlines()
 stop2 = set(stopwords.words('english'))
 
 def clean_text_en(text) :

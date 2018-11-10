@@ -3,13 +3,13 @@ import numpy as np
 import pandas as pd # for csv file
 from tashaphyne.stemming import ArabicLightStemmer #arabic stemmer
 
-# to convert a collection of raw documents to a matrix of TF-IDF features.
+# to convert a collection of raw documents to a matrix of TF-IDF _features.
 from sklearn.feature_extraction.text import CountVectorizer
 
 # for feature selection
 from sklearn.metrics import confusion_matrix
 
-# implements what is called one-of-K or “one-hot” coding for categorical (aka nominal, discrete) features.
+# implements what is called one-of-K or “one-hot” coding for categorical (aka nominal, discrete) _features.
 from sklearn.preprocessing import LabelEncoder
 
 # splitting the data in test and train
@@ -65,14 +65,14 @@ xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size=0.2)
 # ------------------------------------------------naive bayes implementation ------------------------------------------------
 
 featurenames=' '.join(vector.get_feature_names())
-file = open("arabic_category_features.txt","w", encoding="utf8")
+file = open("..\_features\_arabic_category_features.txt","w", encoding="utf8")
 file.write(featurenames)
 file.close()
 nb = MultinomialNB()
 nb.fit(xtrain, ytrain)	# fitting the text
 print("Normal implementation")
 print(nb.score(xtest, ytest))		# to calculate the score for the classification
-pickle.dump(nb, open("arabic_category_model.pickle.dat", "wb"))
+pickle.dump(nb, open("..\exported_models\_arabic_category_model.pickle.dat", "wb"))
 # ---------------------- Plotting ------------------------------------
 
 ypred = nb.predict(xtest)
@@ -82,6 +82,9 @@ np.set_printoptions(precision=2)
 # Plot non-normalized confusion matrix
 plt.figure()
 plot_confusion_matrix(cnf_matrix, classes=class_names, title='Confusion matrix, without normalization')
+plt.figure()
+plot_confusion_matrix(cnf_matrix, classes=class_names, normalize=True,
+                      title='Normalized confusion matrix')
 plt.show()
 
 from sklearn.metrics import accuracy_score
