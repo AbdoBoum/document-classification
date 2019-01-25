@@ -1,7 +1,7 @@
 # document-classification
-Repo for document classification
-----------------------------------------------------------------------------
 
+AUTHOR : <a href="https://www.linkedin.com/in/abdo-boumahdi/">BOUMAHDI ABDERRAHIM</a>
+<br>
 Document classification is one of the important task in supervised machine learning (ML). To
 perform document classification automatically, documents need to be represented such that it
 is understandable to the machine learning classifier. We made 3 models of classifiers, the first
@@ -16,3 +16,4 @@ extraction of features using " Count and TfIdf feature vectors ". For each featu
 representation, we trained the Naïve Bayes classifier and then tested the generated classifier
 on test documents. In our results, we found that Count vectorizer performed 2% better than
 TFIDF on a dataset of over 10,000 samples, and 1% better than it on a dataset of over 30,000 samples
+
