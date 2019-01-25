@@ -1,7 +1,7 @@
 # document-classification
 
 AUTHOR : <a href="https://www.linkedin.com/in/abdo-boumahdi/">BOUMAHDI ABDERRAHIM</a>
-<br>
+<hr>
 Document classification is one of the important task in supervised machine learning (ML). To
 perform document classification automatically, documents need to be represented such that it
 is understandable to the machine learning classifier. We made 3 models of classifiers, the first
